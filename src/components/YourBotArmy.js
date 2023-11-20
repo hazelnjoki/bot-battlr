@@ -5,14 +5,18 @@ import BotCard from "./BotCard";
 function YourBotArmy({ botsArmy, releaseBot, dischargeBot }) {
  
   const enlistedBot = botsArmy.map((bot) => {
-    return <BotCard key={bot} bot={bot} handleBot={releaseBot} dischargeBot={dischargeBot}/>
-
+   return(<div key ={bot.id}>
+    <button onClick={()=>releaseBot(bot)} >release</button>
+    <button onClick={()=>dischargeBot(bot)} >discharge</button>
+    <BotCard key={bot} bot={bot}  />
+   </div>)
   })
 
   return (
     <div className="ui segment inverted olive bot-army">
       <div className="ui five column grid">
-        <div className="row bot-army-row">
+        <div className="row bot-army-row"> 
+        
           {enlistedBot}
         </div>
       </div>

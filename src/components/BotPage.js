@@ -6,30 +6,28 @@ function BotsPage() {
   //start here with your code for step one
   const [displayBots, setDisplayBots] = useState([])
   const [botsArmy, setBotsArmy] = useState([])
-  const [botsCollection, setBotsCollection] = useState(false)
+ // const [botsCollection, setBotsCollection] = useState(false)
 
   useEffect(() => {
-    fetchBots()
-
-  }, [botsCollection])
-
-  const fetchBots = () => {
-    const api = 'http://localhost:3000/bots'
-    fetch(api)
+    fetch('http://localhost:3000/bots')
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data)
+        console.log(data)
         setDisplayBots(data)
       })
       .catch((err) => console.log(err))
-  }
+   
+
+  }, [botsArmy])
+
+  
 
 
-  function addBotToArmy(bot) {
-    const newBotArmy = botsArmy.find((bt) => bt.id === bot.id)
-    if (!newBotArmy) setBotsArmy([...botsArmy, bot])
+  // function addBotToArmy(bot) {
+  //   const newBotArmy = botsArmy.find((bt) => bt.id === bot.id)
+  //   if (!newBotArmy) setBotsArmy([...botsArmy, bot])
 
-  }
+  // }
 
   function releaseBot(bot) {
     const newBotArmy = botsArmy.find((bt) => bt.id === bot.id)
@@ -45,15 +43,19 @@ function BotsPage() {
     const botApi = `http://localhost:3000/bots/${bot}`
     fetch(botApi, {
       method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      
     })
-
-    const deleteBot = botsArmy.filter((bt) => bt.id !== bot);
-		setBotsArmy(deleteBot);
+.then((response) =>response.json())
+setBotsArmy([...botsArmy,bot])
+    // const deleteBot = botsArmy.filter((bt) => bt.id !== bot);
+		// setBotsArmy(deleteBot);
 
   }
+function handlenlist(displayBots) {
+  if(!botsArmy.some((armybots)=>armybots.id !== displayBots.id)){
+    setBotsArmy([...botsArmy, displayBots])
+  } 
+}
 
 
   return (
@@ -66,7 +68,8 @@ function BotsPage() {
       <BotCollection 
         displayBots={displayBots} 
         // dischargeBot={dischargeBot} 
-        addBotToArmy={addBotToArmy}
+       
+        handlenlist={handlenlist}
       />
     
     </div>
