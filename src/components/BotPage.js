@@ -40,7 +40,7 @@ function BotsPage() {
   }
 
   function dischargeBot(bot) {
-    const botApi = `http://localhost:3000/bot/${bot}`
+    const botApi = `https://bot-json-ghdp.onrender.com/bots/${bot}`
     fetch(botApi, {
       method: "DELETE",
       
