@@ -9,7 +9,7 @@ function BotsPage() {
  // const [botsCollection, setBotsCollection] = useState(false)
 
   useEffect(() => {
-    fetch('http://localhost:3000/bots')
+    fetch('https://bot-json-ghdp.onrender.com/bots')
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
@@ -40,7 +40,7 @@ function BotsPage() {
   }
 
   function dischargeBot(bot) {
-    const botApi = `http://localhost:3000/bots/${bot}`
+    const botApi = `http://localhost:3000/bot/${bot}`
     fetch(botApi, {
       method: "DELETE",
       
